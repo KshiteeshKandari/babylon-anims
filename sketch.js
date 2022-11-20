@@ -31,12 +31,24 @@ var createScene = function () {
     // Default intensity is 1. Let's dim the light a small amount
     light.intensity = 0.7;
 
-    var newsphere = createSphere(0, 1, 0, 2);
-    newsphere.material = hexMat('#ff0000');
+    // var newsphere = createSphere(0, 1, 0, 2);
+    // newsphere.material = hexMat('#ff0000');
+
+    var car = new meshModel("car.glb",1.5,x = 10,y = 0.3, z = 8);
+    var ufo = new meshModel("ufo.glb",1.5,x = -3, y = 0.4, z = -3);
+    var house = new meshModel("both_houses_scene.glb",1.5);
 
     // Our built-in 'ground' shape.
-    var ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 6, height: 6}, scene);
+    var ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 12, height: 10}, scene);
 
+
+    var anim1 = {subj: car.position, prop: "x", val: -10};
+    var anim2 = {subj: ufo.position, prop: "x", val: 3};
+    var anim3 = {subj: ufo.position, prop: "y", val: 2};
+   
+
+    var animList = [anim1,anim2,anim3];
+    animate(animList,scene);
     return scene;
 };
 window.initFunction = async function () {
